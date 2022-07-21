@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_19_214650) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_19_215510) do
   create_table "bands", force: :cascade do |t|
     t.string "name"
     t.integer "members"
@@ -20,4 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_214650) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "concerts", force: :cascade do |t|
+    t.date "date"
+    t.string "place"
+    t.integer "assistants", default: 0
+    t.integer "duration", default: 0
+    t.integer "band_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["band_id"], name: "index_concerts_on_band_id"
+  end
+
+  add_foreign_key "concerts", "bands"
 end

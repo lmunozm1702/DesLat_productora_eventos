@@ -1,0 +1,14 @@
+Clase 01/07 
+ 
+ rails g scaffold band name members:integer first_show:date band_type:integer
+
+ rails g scaffold concert date:date place assistants:integer duration:integer band:references
+
+** Modificar las migraciones para incluir valores por defecto
+
+rails db:migrate
+
+has_many :concerts /*band.rb*/
+belongs_to :band /*concert.rb*/
+
+enum band_type: %i[band girl_band boy_band] /*band.rb*/
