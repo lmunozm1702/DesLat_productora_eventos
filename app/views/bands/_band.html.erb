@@ -19,4 +19,23 @@
     <%= band.band_type %>
   </p>
 
+  <p>
+    <strong>Concerts made:</strong>
+    <%= band.concerts.size %>
+  </p>
+
+  <p>
+    <strong>Total fans:</strong>
+    <%= band.concerts.map {|concert| concert.assistants}.sum%>
+  </p>
+
+  <p>
+    <strong>This month concerts:</strong>
+    <%= band.this_month_concerts%>
+  </p>
+
+  <p>
+    <strong>Last concert:</strong>
+    <%= band.last_concert.date.strftime("%Y - %B - ")%>
+  </p>
 </div>

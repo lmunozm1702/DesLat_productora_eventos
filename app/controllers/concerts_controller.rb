@@ -1,5 +1,6 @@
 class ConcertsController < ApplicationController
   before_action :set_concert, only: %i[ show edit update destroy ]
+  before_action :set_bands, only: %i[new edit]
 
   # GET /concerts or /concerts.json
   def index
@@ -66,5 +67,9 @@ class ConcertsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def concert_params
       params.require(:concert).permit(:date, :place, :assistants, :duration, :band_id)
+    end
+
+    def set_bands
+      @bands = Band.pluck(:name, :id)
     end
 end

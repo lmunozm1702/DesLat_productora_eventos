@@ -12,3 +12,31 @@ has_many :concerts /*band.rb*/
 belongs_to :band /*concert.rb*/
 
 enum band_type: %i[band girl_band boy_band] /*band.rb*/
+
+root 'bands#index' /*config>routes.rb*/
+
+
+before_action :set_band_type, only: %i[new edit] /*app>controllers>bands_controller*/
+/*app>controllers>bands_controller*/
+def set_band_type
+      @band_type = Band.band_types.keys.map {|type| [type.humanize, type]}
+end
+<%= form.select :band_type, @band_type %> /*>app>views>bands>_form.html.erb*/
+
+before_action :set_bands, only: %i[new edit] >app>controllers>concerts_controller.rb
+>>PRIVATE:
+def concert_params
+    params.require(:concert).permit(:date, :place, :assistants, :duration, :band_id)
+end
+<%= form.select :band_id, @bands %> /*app>vies>concerts>_form.html.erb
+
+/*elimina todos los conciertos antes de eliminar la banda*/
+has_many :concerts, dependent: :destroy
+
+app>models>bands>band.rb
+    def this_month_concerts
+        self.concerts.where(date: (Date.today.beginning_of_month)..(Date.today))
+    end
+
+
+2.19.48

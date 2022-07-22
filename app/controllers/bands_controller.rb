@@ -1,5 +1,6 @@
 class BandsController < ApplicationController
   before_action :set_band, only: %i[ show edit update destroy ]
+  before_action :set_band_type, only: %i[new edit]
 
   # GET /bands or /bands.json
   def index
@@ -66,5 +67,9 @@ class BandsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def band_params
       params.require(:band).permit(:name, :members, :first_show, :band_type)
+    end
+
+    def set_band_type
+      @band_type = Band.band_types.keys.map {|type| [type.humanize, type]}
     end
 end
