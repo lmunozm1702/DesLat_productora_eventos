@@ -1,5 +1,6 @@
 class Band < ApplicationRecord
     has_many :concerts, dependent: :destroy
+    has_many :crews, dependant: :destroy
 
     enum band_type: %i[band girl_band boy_band]
 

@@ -48,3 +48,9 @@ app>views>band>_band.html.erb
     <strong>Last concert:</strong>
     <%= band.last_concert_date%>
 </p>
+
+8.- Band and crew relation
+rails g scaffold crew name instrument band:references
+/*app-models-band*/
+has_many :crews, dependant: :destroy
+
