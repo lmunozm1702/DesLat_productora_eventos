@@ -31,6 +31,19 @@
     <%= form.select :band_type, @band_type %>
   </div>
 
+  <p>Crew fields</p>
+  <%= form.fields_for :crews do |crew| %>
+    <div class="crew-group">
+      <%= crew.label :name%>
+      <%= crew.text_field :name%>
+
+      <%= crew.label :instrument %>
+      <%= crew.text_field :instrument %>
+    </div>
+  <% end %>
+  
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

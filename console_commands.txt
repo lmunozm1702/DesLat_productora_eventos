@@ -53,4 +53,17 @@ app>views>band>_band.html.erb
 rails g scaffold crew name instrument band:references
 /*app-models-band*/
 has_many :crews, dependant: :destroy
+accepts_nested_attributes_for :crews,
+                allow_destroy: true,
+                reject_if: proc { |attributes[:name].blank? || attributes[:instrument].blank? }
+                #If name or instrument are blank, then don't save
+/*band_controller.rb*/
+ def new
+    @band = Band.new
+    @band.crews.build #Al guardar se asegura la relación 
+  end
+def band_params
+      params.require(:band).permit(:name, :members, :first_show, :band_type, crew_attributes: [:id, :name, :instrument, :_destroy])
+    end
 
+  3.08.47  

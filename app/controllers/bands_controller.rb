@@ -14,6 +14,7 @@ class BandsController < ApplicationController
   # GET /bands/new
   def new
     @band = Band.new
+    @band.crews.build #Al guardar se asegura la relación 
   end
 
   # GET /bands/1/edit
@@ -66,7 +67,7 @@ class BandsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def band_params
-      params.require(:band).permit(:name, :members, :first_show, :band_type)
+      params.require(:band).permit(:name, :members, :first_show, :band_type, crew_attributes: [:id, :name, :instrument, :_destroy])
     end
 
     def set_band_type
