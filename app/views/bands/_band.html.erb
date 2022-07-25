@@ -16,7 +16,7 @@
 
   <p>
     <strong>Band type:</strong>
-    <%= band.band_type %>
+    <%= band.band_type.humanize %>
   </p>
 
   <p>
@@ -26,7 +26,7 @@
 
   <p>
     <strong>Total fans:</strong>
-    <%= band.concerts.map {|concert| concert.assistants}.sum%>
+    <%= band.all_assistants %>
   </p>
 
   <p>
@@ -36,6 +36,21 @@
 
   <p>
     <strong>Last concert:</strong>
-    <%= band.last_concert.date.strftime("%Y - %B - ")%>
+    <%= band.last_concert_date%>
+  </p>
+
+    <p>
+    <strong>Top assistance:</strong>
+    <%= band.most_popular_concert%>
+  </p>
+
+  <p>
+    <strong>Longest concert:</strong>
+    <%= band.longest_concert%> minutes.
+  </p>
+
+    <p>
+    <strong>Longest concert location:</strong>
+    <%= band.longest_concerts_location%> 
   </p>
 </div>

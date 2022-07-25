@@ -39,4 +39,12 @@ app>models>bands>band.rb
     end
 
 
-2.19.48
+band.rb
+    def last_concert_date
+        self.last_concert.date.strftime("%Y - %B - %d")
+    end
+app>views>band>_band.html.erb
+<p>
+    <strong>Last concert:</strong>
+    <%= band.last_concert_date%>
+</p>
